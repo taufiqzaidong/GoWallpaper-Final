@@ -6,8 +6,13 @@ import 'package:gowallpaper/screens/wrapper.dart';
 import 'package:gowallpaper/models/user.dart';
 import 'package:gowallpaper/services/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -23,7 +28,7 @@ class MyApp extends StatelessWidget {
                     GoogleFonts.montserrat(textStyle: textTheme.bodyText1),
               )),
           routes: {
-            '/stream': (context) => Stream(),
+            '/stream': (context) => StreamStart(),
             '/home': (context) => Home()
           },
           initialRoute: '/home'),
@@ -31,7 +36,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Stream extends StatelessWidget {
+class StreamStart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<UserId>.value(
