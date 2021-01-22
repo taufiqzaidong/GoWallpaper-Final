@@ -15,6 +15,7 @@ class _ProfileState extends State<Profile> {
     final theme = Provider.of<ThemeChanger>(context);
     return MaterialApp(
       theme: theme.getTheme(),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           body: new Center(
               child: Column(

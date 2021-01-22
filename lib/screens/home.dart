@@ -14,6 +14,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
+  
   final tabs = [MainHome(), Center(child: Text('Camera')), Profile()];
 
   Color iconColour(ThemeData iconTheme) {
@@ -39,12 +40,12 @@ class _HomeState extends State<Home> {
           title: titleAppBar(),
           actions: <Widget>[
             FlatButton.icon(
-                icon: Icon(Icons.person),
-                label: Text('Logout'),
-                onPressed: () async {
-                  await _auth.signOut();
-                },
-                ),
+              icon: Icon(Icons.person),
+              label: Text('Logout'),
+              onPressed: () async {
+                await _auth.signOut();
+              },
+            ),
             IconButton(
               color: iconColour(theme.getTheme()),
               icon: Icon(Icons.bedtime),
