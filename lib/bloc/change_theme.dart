@@ -39,7 +39,7 @@ class ChangeTheme extends StatelessWidget {
                 height: 50,
                 child: FlatButton(
                   color: Colors.purple[400],
-                    child: Text('Light Theme'),
+                    child: Text('Light Theme',style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       _themeChanger.setTheme(ThemeData.light());
                       Navigator.pop(context);
@@ -53,7 +53,7 @@ class ChangeTheme extends StatelessWidget {
                 height: 50,
                 child: FlatButton(
                   color: Colors.purple[400],
-                    child: Text('Dark Theme'),
+                    child: Text('Dark Theme',style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       _themeChanger.setTheme(ThemeData.dark());
                       Navigator.pop(context);

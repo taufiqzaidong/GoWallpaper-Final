@@ -6,6 +6,7 @@ import 'package:gowallpaper/widgets/title_appbar.dart';
 import 'package:gowallpaper/services/auth.dart';
 import 'package:gowallpaper/screens/profile.dart';
 import 'package:gowallpaper/screens/mainhome.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -27,6 +28,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+   // FlutterStatusbarcolor.setStatusBarColor(Colors.purple);
     final theme = Provider.of<ThemeChanger>(context);
 
     final AuthService _auth = AuthService();

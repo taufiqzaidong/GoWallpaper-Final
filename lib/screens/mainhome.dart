@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gowallpaper/data/data.dart';
 import 'package:gowallpaper/models/categories_model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class MainHome extends StatefulWidget {
   @override
@@ -10,6 +11,19 @@ class MainHome extends StatefulWidget {
 class _MainHomeState extends State<MainHome> {
   List<CategorieModel> categories = new List();
 
+  Future<Widget> _getImage(BuildContext context, String imageName) async {
+    Image image;
+    await FireStorageService.loadImage(context, imageName).then((value) {
+      image = Image.network(
+        value.toString(),
+        fit: BoxFit.scaleDown,
+      );
+    });
+    return image;
+  }
+
+
+
   @override
   void initState() {
     categories = getCategories();
@@ -18,6 +32,30 @@ class _MainHomeState extends State<MainHome> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    FutureBuilder getWallpaper(){
+      return FutureBuilder(
+            future: _getImage(context, 'kirby.jpg'),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    height: MediaQuery.of(context).size.width / 1.2,
+                    child: snapshot.data);
+              }
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    height: MediaQuery.of(context).size.width / 1.2,
+                    child: CircularProgressIndicator());
+              }
+              return Container(child: Text('No image get'));
+            },
+          );
+    }
+
     return Container(
       child: Column(
         children: <Widget>[
@@ -54,7 +92,10 @@ class _MainHomeState extends State<MainHome> {
                 );
               },
             ),
-          )
+          ),
+          Container(),
+          Container(
+              child: getWallpaper())
         ],
       ),
     );
@@ -80,10 +121,18 @@ class CategoriesTile extends StatelessWidget {
             height: 50,
             width: 100,
             alignment: Alignment.center,
-            child: Text(title, style: TextStyle(color: Colors.white,fontFamily: 'Bebas')),
+            child: Text(title,
+                style: TextStyle(color: Colors.white, fontFamily: 'Bebas')),
           )
         ],
       ),
     );
+  }
+}
+
+class FireStorageService extends ChangeNotifier {
+  FireStorageService();
+  static Future<dynamic> loadImage(BuildContext context, String image) async {
+    return await FirebaseStorage.instance.ref().child(image).getDownloadURL();
   }
 }
