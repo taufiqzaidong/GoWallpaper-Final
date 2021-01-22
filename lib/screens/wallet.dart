@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Help extends StatefulWidget {
+class Wallet extends StatefulWidget {
   @override
-  _HelpState createState() => _HelpState();
+  _WalletState createState() => _WalletState();
 }
 
-class _HelpState extends State<Help> {
+class _WalletState extends State<Wallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Help'),
+          title: Text('Wallet'),
           backgroundColor: Colors.purple[400],
         ),
         backgroundColor: Colors.grey[600],
@@ -19,29 +19,25 @@ class _HelpState extends State<Help> {
             child: Column(
               children: <Widget>[
                 Text(
-                  "how can i help you?",
-                  style: TextStyle(fontSize: 25, color: Colors.black),
+                  "Here your balance for your Account!!",
+                  style: TextStyle(fontSize: 30, color: Colors.white),
                 ),
                 SizedBox(
                   height: 16,
                   width: 100,
                 ),
-                TextField(
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: ('Any problem'),
-                    fillColor: Colors.black,
-                  ),
+                Text(
+                  "Total of your account:",
+                  style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
                 SizedBox(
-                  height: 16,
+                  height: 200,
                   width: 100,
                 ),
                 RaisedButton(
                   textColor: Colors.white,
                   color: Colors.purple[300],
-                  child: Text('Submit'),
+                  child: Text('Withdraw'),
                   onPressed: () {},
                 )
               ],

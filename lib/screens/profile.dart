@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gowallpaper/screens/help.dart';
+import 'package:gowallpaper/screens/wallet.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -39,7 +41,12 @@ class _ProfileState extends State<Profile> {
               textColor: Colors.white,
               color: Colors.purple,
               child: Text('Wallet'),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Wallet()),
+                );
+              },
             ),
             SizedBox(
               height: 15,
@@ -57,7 +64,12 @@ class _ProfileState extends State<Profile> {
               textColor: Colors.white,
               color: Colors.purple,
               child: Text('Help'),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Help()),
+                );
+              },
             ),
             SizedBox(
               height: 15,
