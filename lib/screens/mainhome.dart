@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gowallpaper/data/data.dart';
 import 'package:gowallpaper/models/categories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
 class MainHome extends StatefulWidget {
   @override
@@ -10,6 +13,12 @@ class MainHome extends StatefulWidget {
 
 class _MainHomeState extends State<MainHome> {
   List<CategorieModel> categories = new List();
+
+  StreamSubscription<QuerySnapshot> subscription;
+
+  List<DocumentSnapshot> wallpapersList;
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('wallpapers');
 
   Future<Widget> _getImage(BuildContext context, String imageName) async {
     Image image;
@@ -22,38 +31,45 @@ class _MainHomeState extends State<MainHome> {
     return image;
   }
 
-
+  @override
+  void dispose() {
+    subscription?.cancel();
+    super.dispose();
+  }
 
   @override
   void initState() {
     categories = getCategories();
+    subscription = collectionReference.snapshots().listen((datasnapshot) {
+      setState(() {
+        wallpapersList = datasnapshot.docs;
+      });
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-
-    FutureBuilder getWallpaper(){
+    FutureBuilder getWallpaper() {
       return FutureBuilder(
-            future: _getImage(context, 'kirby.jpg'),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Container(
-                    width: MediaQuery.of(context).size.width / 1.2,
-                    height: MediaQuery.of(context).size.width / 1.2,
-                    child: snapshot.data);
-              }
+        future: _getImage(context, 'kirby.jpg'),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Container(
+                width: MediaQuery.of(context).size.width / 1.2,
+                height: MediaQuery.of(context).size.width / 1.2,
+                child: snapshot.data);
+          }
 
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Container(
-                    width: MediaQuery.of(context).size.width / 1.2,
-                    height: MediaQuery.of(context).size.width / 1.2,
-                    child: CircularProgressIndicator());
-              }
-              return Container(child: Text('No image get'));
-            },
-          );
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
+                width: MediaQuery.of(context).size.width / 1.2,
+                height: MediaQuery.of(context).size.width / 1.2,
+                child: CircularProgressIndicator());
+          }
+          return Container(child: Text('No image get'));
+        },
+      );
     }
 
     return Container(
@@ -93,9 +109,38 @@ class _MainHomeState extends State<MainHome> {
               },
             ),
           ),
-          Container(),
           Container(
-              child: getWallpaper())
+              child: wallpapersList != null
+                  ? new StaggeredGridView.countBuilder(
+                      padding: const EdgeInsets.all(8.0),
+                      crossAxisCount: 4,
+                      itemCount: wallpapersList.length,
+                      itemBuilder: (context, index) {
+                        String imgPath = wallpapersList[index].get('url');
+                        print('ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR');
+                        print(imgPath);
+                        return new Material(
+                          elevation: 0,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          child: InkWell(
+                            child: Hero(
+                              tag: imgPath,
+                              child: FadeInImage(
+                                image: NetworkImage(imgPath),
+                                fit: BoxFit.cover,
+                                placeholder: AssetImage('assets/loading.png'),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      staggeredTileBuilder: (i) =>
+                          new StaggeredTile.count(2, i.isEven ? 2 : 3),
+                      mainAxisSpacing: 8.0,
+                      crossAxisSpacing: 8.0,
+                    )
+                  : Center(child: CircularProgressIndicator())),
+          Container(child: getWallpaper()),
         ],
       ),
     );
