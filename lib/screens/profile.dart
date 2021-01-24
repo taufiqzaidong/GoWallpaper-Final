@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gowallpaper/screens/help.dart';
+import 'package:gowallpaper/screens/sign_in.dart';
 import 'package:gowallpaper/screens/wallet.dart';
 import 'package:gowallpaper/bloc/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:gowallpaper/services/auth.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -13,6 +15,8 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeChanger>(context);
+
+    final AuthService _auth = AuthService();
     return MaterialApp(
       theme: theme.getTheme(),
       debugShowCheckedModeBanner: false,
@@ -83,7 +87,9 @@ class _ProfileState extends State<Profile> {
             textColor: Colors.white,
             color: Colors.purple,
             child: Text('Log Out'),
-            onPressed: () {},
+            onPressed: () async {
+              await _auth.signOut();
+            },
           ),
         ],
       ))),
