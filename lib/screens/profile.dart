@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gowallpaper/screens/help.dart';
-import 'package:gowallpaper/screens/sign_in.dart';
 import 'package:gowallpaper/screens/wallet.dart';
 import 'package:gowallpaper/bloc/theme.dart';
 import 'package:provider/provider.dart';

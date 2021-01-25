@@ -7,6 +7,7 @@ import 'package:gowallpaper/services/auth.dart';
 import 'package:gowallpaper/screens/profile.dart';
 import 'package:gowallpaper/screens/mainhome.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:gowallpaper/screens/choose_image.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,8 +16,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  
-  final tabs = [MainHome(), Center(child: Text('Camera')), Profile()];
+
+  final tabs = [MainHome(), ChooseImage(), Profile()];
 
   Color iconColour(ThemeData iconTheme) {
     if (iconTheme == ThemeData.light()) {
@@ -28,7 +29,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-   // FlutterStatusbarcolor.setStatusBarColor(Colors.purple);
+    // FlutterStatusbarcolor.setStatusBarColor(Colors.purple);
     final theme = Provider.of<ThemeChanger>(context);
 
     final AuthService _auth = AuthService();
