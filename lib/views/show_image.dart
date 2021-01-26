@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:gowallpaper/bloc/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_storage/firebase_storage.dart' as fs;
+import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
+
+import 'dart:math';
 
 class ShowFileImage extends StatefulWidget {
   final File image;
@@ -15,8 +18,10 @@ class ShowFileImage extends StatefulWidget {
 }
 
 class _ShowFileImageState extends State<ShowFileImage> {
+  File imageInShow = ShowFileImage().image;
+
   CollectionReference imgRef;
-  firebase_storage.Reference ref;
+  fs.Reference ref;
 
   bool uploading = false;
   double val = 0;
@@ -98,13 +103,17 @@ class _ShowFileImageState extends State<ShowFileImage> {
   }
 
   Future uploadFile() async {
-    ref = firebase_storage.FirebaseStorage.instance
+    ref = fs.FirebaseStorage.instance
         .ref()
         .child('images/${Path.basename(widget.image.path)}');
 
     await ref.putFile(widget.image).whenComplete(() async {
       await ref.getDownloadURL().then((value) {
-        imgRef.add({'url': value});
+        imgRef.add({
+          'url': value,
+          'location': 'images/${Path.basename(widget.image.path)}'
+        });
+        //_addPathToDatabase('images/${Path.basename(widget.image.path)}');
       });
       showAlertDialog(context);
     });
@@ -130,5 +139,29 @@ class _ShowFileImageState extends State<ShowFileImage> {
         return alert;
       },
     );
+  }
+
+  Future<void> _addPathToDatabase(String text) async {
+    try {
+      // Get image URL from firebase
+      final ref1 = ref.child(text);
+      var imageString = await ref1.getDownloadURL();
+
+      // Add location and url to database
+
+      await FirebaseFirestore.instance
+          .collection('storage')
+          .doc()
+          .set({'url': imageString, 'location': text});
+    } catch (e) {
+      print(e.message);
+      /*showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(e.message),
+            );
+          });*/
+    }
   }
 }

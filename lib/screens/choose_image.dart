@@ -21,14 +21,14 @@ class _ChooseImageState extends State<ChooseImage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
-                  color: Colors.purple[400],
-                  borderRadius: BorderRadius.circular(30)),
               margin: EdgeInsets.symmetric(horizontal: 10),
               padding: EdgeInsets.symmetric(horizontal: 10),
               height: MediaQuery.of(context).size.height / 8,
               width: MediaQuery.of(context).size.width,
               child: RaisedButton.icon(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                color: Colors.purple[400],
                 icon: Icon(
                   Icons.camera,
                   color: Colors.white,
@@ -39,14 +39,14 @@ class _ChooseImageState extends State<ChooseImage> {
             ),
             SizedBox(height: 20),
             Container(
-              decoration: BoxDecoration(
-                  color: Colors.purple[400],
-                  borderRadius: BorderRadius.circular(30)),
               margin: EdgeInsets.symmetric(horizontal: 10),
               padding: EdgeInsets.symmetric(horizontal: 10),
               height: MediaQuery.of(context).size.height / 8,
               width: MediaQuery.of(context).size.width,
               child: RaisedButton.icon(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                color: Colors.purple[400],
                 icon: Icon(
                   Icons.folder,
                   color: Colors.white,
