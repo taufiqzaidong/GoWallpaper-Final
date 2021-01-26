@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gowallpaper/screens/help.dart';
+import 'package:gowallpaper/screens/location.dart';
 import 'package:gowallpaper/screens/wallet.dart';
 import 'package:gowallpaper/bloc/theme.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +64,12 @@ class _ProfileState extends State<Profile> {
             textColor: Colors.white,
             color: Colors.purple,
             child: Text('Location'),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Location()),
+              );
+            },
           ),
           SizedBox(
             height: 15,

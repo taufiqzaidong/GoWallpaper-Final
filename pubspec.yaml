@@ -39,6 +39,7 @@ dependencies:
   flutter_staggered_grid_view:
   image_picker: ^0.6.7+14
   transparent_image: ^1.0.0
+  geolocator : ^5.1.5
  
 
 dev_dependencies:
