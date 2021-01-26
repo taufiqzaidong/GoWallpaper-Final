@@ -44,7 +44,7 @@ class _SignInState extends State<SignIn> {
                           TextSpan(
                               text: "Go",
                               style: TextStyle(
-                                  color: Colors.purple,
+                                  color: Colors.purple[400],
                                   fontWeight: FontWeight.bold,
                                   fontSize: 50,
                                   fontFamily: 'Bebas')),

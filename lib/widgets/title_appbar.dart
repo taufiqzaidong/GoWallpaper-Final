@@ -6,7 +6,7 @@ Widget titleAppBar() {
       TextSpan(
           text: "Go",
           style: TextStyle(
-              color: Colors.purple,
+              color: Colors.purple[400],
               fontWeight: FontWeight.bold,
               fontSize: 25,
               fontFamily: 'Bebas')),
