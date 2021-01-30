@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gowallpaper/screens/fingerprint.dart';
 import 'package:gowallpaper/screens/help.dart';
 import 'package:gowallpaper/screens/location.dart';
-import 'package:gowallpaper/screens/wallet.dart';
 import 'package:gowallpaper/bloc/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:gowallpaper/services/auth.dart';
@@ -53,7 +53,7 @@ class _ProfileState extends State<Profile> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Wallet()),
+                MaterialPageRoute(builder: (context) => FingerPrint()),
               );
             },
           ),

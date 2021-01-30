@@ -41,6 +41,7 @@ dependencies:
   transparent_image: ^1.0.0
   geolocator : ^5.1.5
   sizer: ^1.1.8
+  local_auth: ^0.6.1
  
 
 dev_dependencies:
