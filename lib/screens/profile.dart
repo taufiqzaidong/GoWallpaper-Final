@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gowallpaper/screens/fingerprint.dart';
 import 'package:gowallpaper/screens/help.dart';
 import 'package:gowallpaper/screens/location.dart';
-import 'package:gowallpaper/screens/wallet.dart';
 import 'package:gowallpaper/bloc/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:gowallpaper/services/auth.dart';
@@ -32,16 +32,6 @@ class _ProfileState extends State<Profile> {
               height: 150,
               fit: BoxFit.cover,
             ),
-            SizedBox(height: 15),
-            Text(
-              "User Name",
-              style: TextStyle(
-                  color: Colors.black, fontSize: 25, fontFamily: 'Bebas'),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            RaisedButton(
               textColor: Colors.white,
               color: Colors.purple,
               child: Text('Wallet'),
@@ -94,6 +84,3 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       ))),
-    );
-  }
-}
