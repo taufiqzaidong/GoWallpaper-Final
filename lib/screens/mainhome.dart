@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gowallpaper/data/data.dart';
 import 'package:gowallpaper/models/categories_model.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
+import 'package:transparent_image/transparent_image.dart';
 
 class MainHome extends StatefulWidget {
   @override
@@ -13,18 +13,9 @@ class MainHome extends StatefulWidget {
 
 class _MainHomeState extends State<MainHome> {
   List<CategorieModel> categories = new List();
-  @override
-  void initState() {
-    categories = getCategories();
-    subscription = collectionReference.snapshots().listen((datasnapshot) {
-      setState(() {
-        wallpapersList = datasnapshot.docs;
-      });
-    });
-    super.initState();
-  }
 
   StreamSubscription<QuerySnapshot> subscription;
+
   List<DocumentSnapshot> wallpapersList;
   final CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('imageURLs');
@@ -34,6 +25,17 @@ class _MainHomeState extends State<MainHome> {
   void dispose() {
     subscription?.cancel();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    categories = getCategories();
+    subscription = collectionReference.snapshots().listen((datasnapshot) {
+      setState(() {
+        wallpapersList = datasnapshot.docs;
+      });
+    });
   }
 
   @override
@@ -59,11 +61,11 @@ class _MainHomeState extends State<MainHome> {
               ],
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 10),
           Container(
-            height: 80,
+            height: 60,
             child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: 5),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: categories.length,
@@ -75,26 +77,31 @@ class _MainHomeState extends State<MainHome> {
               },
             ),
           ),
-          Container(
+          Expanded(
+            child: SizedBox(
+              height: 200,
               child: wallpapersList != null
                   ? new StaggeredGridView.countBuilder(
                       padding: const EdgeInsets.all(8.0),
                       crossAxisCount: 4,
                       itemCount: wallpapersList.length,
-                      itemBuilder: (context, index) {
-                        String imgPath = wallpapersList[index].get('url');
-                        print('ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR');
-                        print(imgPath);
+                      itemBuilder: (context, i) {
+                        String imgPath = wallpapersList[i].get('url');
                         return new Material(
-                          elevation: 0,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          child: InkWell(
-                            child: Hero(
+                          elevation: 8.0,
+                          borderRadius:
+                              new BorderRadius.all(new Radius.circular(8.0)),
+                          child: new InkWell(
+                            onTap: () {},
+                            child: new Hero(
                               tag: imgPath,
-                              child: FadeInImage(
-                                image: NetworkImage(imgPath),
-                                fit: BoxFit.cover,
-                                placeholder: AssetImage('assets/loading.png'),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: FadeInImage.memoryNetwork(
+                                  image: imgPath,
+                                  fit: BoxFit.cover,
+                                  placeholder: kTransparentImage,
+                                ),
                               ),
                             ),
                           ),
@@ -105,7 +112,11 @@ class _MainHomeState extends State<MainHome> {
                       mainAxisSpacing: 8.0,
                       crossAxisSpacing: 8.0,
                     )
-                  : Center(child: CircularProgressIndicator()))
+                  : new Center(
+                      child: new CircularProgressIndicator(),
+                    ),
+            ),
+          )
         ],
       ),
     );
@@ -137,12 +148,5 @@ class CategoriesTile extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class FireStorageService extends ChangeNotifier {
-  FireStorageService();
-  static Future<dynamic> loadImage(BuildContext context, String image) async {
-    return await FirebaseStorage.instance.ref().child(image).getDownloadURL();
   }
 }

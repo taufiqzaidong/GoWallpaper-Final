@@ -83,7 +83,7 @@ class _ShowFileImageState extends State<ShowFileImage> {
                             uploading = true;
                           });
                           uploadFile()
-                              .whenComplete(() => Navigator.of(context).pop());
+                              .then((value) => Navigator.of(context).pop());
                         },
                       )
                     ],
@@ -103,19 +103,26 @@ class _ShowFileImageState extends State<ShowFileImage> {
   }
 
   Future uploadFile() async {
-    ref = fs.FirebaseStorage.instance
-        .ref()
-        .child('images/${Path.basename(widget.image.path)}');
+    try {
+      ref = fs.FirebaseStorage.instance
+          .ref()
+          .child('images/${Path.basename(widget.image.path)}');
 
-    await ref.putFile(widget.image).whenComplete(() async {
-      await ref.getDownloadURL().then((value) {
-        imgRef.add({
-          'url': value,
-          'location': 'images/${Path.basename(widget.image.path)}'
+      await ref.putFile(widget.image).whenComplete(() async {
+        await ref.getDownloadURL().then((value) {
+          imgRef.add({
+            'url': value,
+            'location': 'images/${Path.basename(widget.image.path)}'
+          });
         });
+
+        showAlertDialog(
+            context, "Photo Successfully Uploaded", 'Tap screen to close');
       });
-      showAlertDialog(context);
-    });
+    } catch (e) {
+      showAlertDialog(
+          context, "Failed to Upload. Please Try Again", 'Tap screen to close');
+    }
   }
 
   @override
@@ -124,12 +131,12 @@ class _ShowFileImageState extends State<ShowFileImage> {
     imgRef = FirebaseFirestore.instance.collection('imageURLs');
   }
 
-  showAlertDialog(BuildContext context) {
+  showAlertDialog(BuildContext context, String msg, String msg2) {
+    String passMsg = msg;
+    String passMsg2 = msg2;
     AlertDialog alert = AlertDialog(
-      title:
-          Text("Photo Successfully Uploaded", style: TextStyle(fontSize: 18)),
-      content: Text('Tap screen to close',
-          style: TextStyle(color: Colors.grey[700])),
+      title: Text(passMsg, style: TextStyle(fontSize: 16)),
+      content: Text(passMsg2, style: TextStyle(color: Colors.grey[700])),
     );
 
     showDialog(
@@ -140,7 +147,7 @@ class _ShowFileImageState extends State<ShowFileImage> {
     );
   }
 
-  Future<void> _addPathToDatabase(String text) async {
+  /*Future<void> _addPathToDatabase(String text) async {
     try {
       // Get image URL from firebase
       final ref1 = ref.child(text);
@@ -149,18 +156,11 @@ class _ShowFileImageState extends State<ShowFileImage> {
       // Add location and url to database
 
       await FirebaseFirestore.instance
-          .collection('storage')
+          .collection('imageUrls')
           .doc()
           .set({'url': imageString, 'location': text});
     } catch (e) {
       print(e.message);
-      /*showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(e.message),
-            );
-          });*/
     }
-  }
+  }*/
 }

@@ -31,15 +31,20 @@ class ChangeTheme extends StatelessWidget {
           ),
         ),
         body: Column(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 50),
             Center(
               child: Container(
                 width: 300,
                 height: 50,
-                child: FlatButton(
-                  color: Colors.purple[400],
-                    child: Text('Light Theme',style: TextStyle(color: Colors.white)),
+                child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    color: Colors.purple[400],
+                    child: Text('Light Theme',
+                        style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       _themeChanger.setTheme(ThemeData.light());
                       Navigator.pop(context);
@@ -51,9 +56,12 @@ class ChangeTheme extends StatelessWidget {
               child: Container(
                 width: 300,
                 height: 50,
-                child: FlatButton(
-                  color: Colors.purple[400],
-                    child: Text('Dark Theme',style: TextStyle(color: Colors.white)),
+                child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    color: Colors.purple[400],
+                    child: Text('Dark Theme',
+                        style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       _themeChanger.setTheme(ThemeData.dark());
                       Navigator.pop(context);
