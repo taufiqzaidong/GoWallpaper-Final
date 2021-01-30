@@ -3,6 +3,7 @@ import 'package:gowallpaper/screens/fingerprint.dart';
 import 'package:gowallpaper/screens/help.dart';
 import 'package:gowallpaper/screens/location.dart';
 import 'package:gowallpaper/bloc/theme.dart';
+import 'package:gowallpaper/screens/wallet.dart';
 import 'package:provider/provider.dart';
 import 'package:gowallpaper/services/auth.dart';
 
@@ -25,13 +26,18 @@ class _ProfileState extends State<Profile> {
               child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 25),
+            SizedBox(height: MediaQuery.of(context).size.height / 70),
             Image.asset(
               'assets/profile1.png',
               width: 200,
               height: 150,
               fit: BoxFit.cover,
             ),
+            Text(
+              'User Name',
+              style: TextStyle(fontFamily: 'Bebas', fontSize: 30),
+            ),
+            RaisedButton(
               textColor: Colors.white,
               color: Colors.purple,
               child: Text('Wallet'),
@@ -84,3 +90,6 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       ))),
+    );
+  }
+}
