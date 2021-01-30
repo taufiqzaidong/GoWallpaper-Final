@@ -29,24 +29,36 @@ class _LocationState extends State<Location> {
         ),
         body: Container(
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/city.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
+              image: DecorationImage(
+                  image: AssetImage('assets/city.png'), fit: BoxFit.cover)),
+          padding: EdgeInsets.symmetric(vertical: 140.0, horizontal: 160.0),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                FlatButton(
-                    onPressed: () {
-                      _getCurrentLocation();
-                    },
-                    color: Colors.purple[400],
-                    child: Text("Find Location")),
-                Text(_locationMessage)
-              ]),
+            children: <Widget>[
+              SizedBox(height: 100),
+              RaisedButton(
+                child: Text(
+                  ' Location',
+                ),
+                onPressed: () {
+                  _getCurrentLocation();
+                },
+              ),
+              Text(_locationMessage),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+//child: Column(
+//mainAxisAlignment: MainAxisAlignment.center,
+//children: <Widget>[
+//FlatButton(
+//onPressed: () {
+//_getCurrentLocation();
+//},
+//color: Colors.purple[400],
+//child: Text("Find Location")),/Text(_locationMessage),
+//]),
