@@ -113,7 +113,6 @@ class _ShowFileImageState extends State<ShowFileImage> {
           'url': value,
           'location': 'images/${Path.basename(widget.image.path)}'
         });
-        //_addPathToDatabase('images/${Path.basename(widget.image.path)}');
       });
       showAlertDialog(context);
     });

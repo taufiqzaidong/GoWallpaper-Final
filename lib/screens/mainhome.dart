@@ -4,7 +4,7 @@ import 'package:gowallpaper/data/data.dart';
 import 'package:gowallpaper/models/categories_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'dart:async';
 
 class MainHome extends StatefulWidget {
   @override
@@ -13,11 +13,27 @@ class MainHome extends StatefulWidget {
 
 class _MainHomeState extends State<MainHome> {
   List<CategorieModel> categories = new List();
-
   @override
   void initState() {
     categories = getCategories();
+    subscription = collectionReference.snapshots().listen((datasnapshot) {
+      setState(() {
+        wallpapersList = datasnapshot.docs;
+      });
+    });
     super.initState();
+  }
+
+  StreamSubscription<QuerySnapshot> subscription;
+  List<DocumentSnapshot> wallpapersList;
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('imageURLs');
+  final databaseReference = FirebaseFirestore.instance;
+
+  @override
+  void dispose() {
+    subscription?.cancel();
+    super.dispose();
   }
 
   @override
@@ -59,7 +75,37 @@ class _MainHomeState extends State<MainHome> {
               },
             ),
           ),
-          Container()
+          Container(
+              child: wallpapersList != null
+                  ? new StaggeredGridView.countBuilder(
+                      padding: const EdgeInsets.all(8.0),
+                      crossAxisCount: 4,
+                      itemCount: wallpapersList.length,
+                      itemBuilder: (context, index) {
+                        String imgPath = wallpapersList[index].get('url');
+                        print('ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR');
+                        print(imgPath);
+                        return new Material(
+                          elevation: 0,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          child: InkWell(
+                            child: Hero(
+                              tag: imgPath,
+                              child: FadeInImage(
+                                image: NetworkImage(imgPath),
+                                fit: BoxFit.cover,
+                                placeholder: AssetImage('assets/loading.png'),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      staggeredTileBuilder: (i) =>
+                          new StaggeredTile.count(2, i.isEven ? 2 : 3),
+                      mainAxisSpacing: 8.0,
+                      crossAxisSpacing: 8.0,
+                    )
+                  : Center(child: CircularProgressIndicator()))
         ],
       ),
     );
@@ -91,5 +137,12 @@ class CategoriesTile extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class FireStorageService extends ChangeNotifier {
+  FireStorageService();
+  static Future<dynamic> loadImage(BuildContext context, String image) async {
+    return await FirebaseStorage.instance.ref().child(image).getDownloadURL();
   }
 }
