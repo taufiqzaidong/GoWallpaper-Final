@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gowallpaper/data/data.dart';
 import 'package:gowallpaper/models/categories_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gowallpaper/views/image_view.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -12,7 +14,7 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
-  List<CategorieModel> categories = new List();
+  List<CategorieModel> categories;
 
   StreamSubscription<QuerySnapshot> subscription;
 
@@ -87,13 +89,20 @@ class _MainHomeState extends State<MainHome> {
                       itemCount: wallpapersList.length,
                       itemBuilder: (context, i) {
                         String imgPath = wallpapersList[i].get('url');
-                        return new Material(
+                        return Material(
                           elevation: 8.0,
-                          borderRadius:
-                              new BorderRadius.all(new Radius.circular(8.0)),
-                          child: new InkWell(
-                            onTap: () {},
-                            child: new Hero(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ImageView(imgUrl: imgPath),
+                                ),
+                              );
+                            },
+                            child: Hero(
                               tag: imgPath,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
@@ -112,8 +121,8 @@ class _MainHomeState extends State<MainHome> {
                       mainAxisSpacing: 8.0,
                       crossAxisSpacing: 8.0,
                     )
-                  : new Center(
-                      child: new CircularProgressIndicator(),
+                  : Center(
+                      child: CircularProgressIndicator(),
                     ),
             ),
           )
@@ -130,22 +139,25 @@ class CategoriesTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4),
-      child: Stack(
-        children: [
-          ClipRRect(
-              child: Image.network(imgUrl,
-                  height: 50, width: 100, fit: BoxFit.cover),
-              borderRadius: BorderRadius.circular(8)),
-          Container(
-            height: 50,
-            width: 100,
-            alignment: Alignment.center,
-            child: Text(title,
-                style: TextStyle(color: Colors.white, fontFamily: 'Bebas')),
-          )
-        ],
+    return InkResponse(
+      onTap: () {},
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 4),
+        child: Stack(
+          children: [
+            ClipRRect(
+                child: Image.network(imgUrl,
+                    height: 50, width: 100, fit: BoxFit.cover),
+                borderRadius: BorderRadius.circular(8)),
+            Container(
+              height: 50,
+              width: 100,
+              alignment: Alignment.center,
+              child: Text(title,
+                  style: TextStyle(color: Colors.white, fontFamily: 'Bebas')),
+            )
+          ],
+        ),
       ),
     );
   }
