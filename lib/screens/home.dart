@@ -66,9 +66,10 @@ class _HomeState extends State<Home> {
         ),
         body: tabs[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
+          //elevation: 0,
           currentIndex: _currentIndex,
           type: BottomNavigationBarType.fixed,
-          //backgroundColor: ,
+          //backgroundColor: Colors.transparent,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.camera), label: 'Camera'),
