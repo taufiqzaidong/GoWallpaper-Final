@@ -1,5 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gowallpaper/services/wallpaper_utilities.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:wallpaper_manager/wallpaper_manager.dart';
+
+enum SetWallpaperAs { Home, Lock, Both }
+const _setAs = {
+  SetWallpaperAs.Home: WallpaperManager.HOME_SCREEN,
+  SetWallpaperAs.Lock: WallpaperManager.LOCK_SCREEN,
+  SetWallpaperAs.Both: WallpaperManager.BOTH_SCREENS,
+};
 
 class ImageView extends StatefulWidget {
   final String imgUrl;
@@ -9,7 +19,7 @@ class ImageView extends StatefulWidget {
 }
 
 class _ImageViewState extends State<ImageView> {
-  //String url = ImageView().imgUrl;
+  String url = ImageView().imgUrl;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +46,7 @@ class _ImageViewState extends State<ImageView> {
                 GestureDetector(
                   //set wallpaper
                   onTap: () async {
-                    await setWallpaper(context);
+                    await setWallpaper(context: context, url: url);
                   },
                   child: Stack(
                     children: <Widget>[
@@ -93,24 +103,40 @@ class _ImageViewState extends State<ImageView> {
     );
   }
 
-  Future<void> setWallpaper(BuildContext context) async {
+  Future<void> setWallpaper({BuildContext context, String url}) async {
     var actionSheet = CupertinoActionSheet(
         title: Text('Set Wallpaper As', style: TextStyle(fontSize: 17)),
         actions: [
           CupertinoActionSheetAction(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop(SetWallpaperAs.Home);
+              },
               child: Text('Home Screen', style: TextStyle(fontSize: 15))),
           CupertinoActionSheetAction(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop(SetWallpaperAs.Lock);
+              },
               child: Text('Lock Screen', style: TextStyle(fontSize: 15))),
           CupertinoActionSheetAction(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop(SetWallpaperAs.Both);
+              },
               child: Text('Both', style: TextStyle(fontSize: 15))),
         ]);
 
-    var option = await showCupertinoModalPopup(
+    SetWallpaperAs option = await showCupertinoModalPopup(
         context: context, builder: (context) => actionSheet);
 
-    if (option != null) {}
+    if (option != null) {
+      var cachedImage = await DefaultCacheManager().getSingleFile(url);
+      if (cachedImage != null) {
+        var result = await WallpaperManager.setWallpaperFromFile(
+            cachedImage.path, _setAs[option]);
+
+        if (result != null) {
+          debugPrint(result);
+        }
+      }
+    }
   }
 }

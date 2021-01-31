@@ -34,6 +34,7 @@ class _HomeState extends State<Home> {
 
     final AuthService _auth = AuthService();
     return MaterialApp(
+      routes: {'/mainhome': (context) => MainHome()},
       debugShowCheckedModeBanner: false,
       theme: theme.getTheme(),
       home: Scaffold(
