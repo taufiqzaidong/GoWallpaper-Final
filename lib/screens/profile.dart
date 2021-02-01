@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gowallpaper/screens/fingerprint.dart';
 import 'package:gowallpaper/screens/help.dart';
 import 'package:gowallpaper/screens/location.dart';
 import 'package:gowallpaper/bloc/theme.dart';
@@ -26,7 +25,7 @@ class _ProfileState extends State<Profile> {
               child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: MediaQuery.of(context).size.height / 70),
+            SizedBox(height: MediaQuery.of(context).size.height / 90),
             Image.asset(
               'assets/profile1.png',
               width: 200,
@@ -38,8 +37,10 @@ class _ProfileState extends State<Profile> {
               style: TextStyle(fontFamily: 'Bebas', fontSize: 30),
             ),
             RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              color: Colors.purple[400],
               textColor: Colors.white,
-              color: Colors.purple,
               child: Text('Wallet'),
               onPressed: () {
                 Navigator.push(
@@ -52,8 +53,10 @@ class _ProfileState extends State<Profile> {
               height: 15,
             ),
             RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              color: Colors.purple[400],
               textColor: Colors.white,
-              color: Colors.purple,
               child: Text('Location'),
               onPressed: () {
                 Navigator.push(
@@ -66,8 +69,10 @@ class _ProfileState extends State<Profile> {
               height: 15,
             ),
             RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              color: Colors.purple[400],
               textColor: Colors.white,
-              color: Colors.purple,
               child: Text('Help'),
               onPressed: () {
                 Navigator.push(
@@ -80,8 +85,10 @@ class _ProfileState extends State<Profile> {
               height: 15,
             ),
             RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              color: Colors.purple[400],
               textColor: Colors.white,
-              color: Colors.purple,
               child: Text('Log Out'),
               onPressed: () async {
                 await _auth.signOut();
