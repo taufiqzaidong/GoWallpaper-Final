@@ -97,9 +97,9 @@ class _MainHomeState extends State<MainHome> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) {
-                                    return ImageView(imgUrl: imgPath);
-                                  },
+                                  builder: (context) => ImageView(
+                                    imgUrl: imgPath,
+                                  ),
                                 ),
                               );
                             },

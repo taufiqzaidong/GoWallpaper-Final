@@ -136,7 +136,7 @@ class _ShowFileImageState extends State<ShowFileImage> {
     String passMsg2 = msg2;
     AlertDialog alert = AlertDialog(
       title: Text(passMsg, style: TextStyle(fontSize: 16)),
-      content: Text(passMsg2, style: TextStyle(color: Colors.grey[700])),
+      content: Text(passMsg2, style: TextStyle(color: Colors.grey)),
     );
 
     showDialog(
