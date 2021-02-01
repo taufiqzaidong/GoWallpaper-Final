@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as fs;
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
+import 'package:gowallpaper/shared/constants.dart';
 
 import 'dart:math';
 
@@ -129,22 +130,6 @@ class _ShowFileImageState extends State<ShowFileImage> {
   void initState() {
     super.initState();
     imgRef = FirebaseFirestore.instance.collection('imageURLs');
-  }
-
-  showAlertDialog(BuildContext context, String msg, String msg2) {
-    String passMsg = msg;
-    String passMsg2 = msg2;
-    AlertDialog alert = AlertDialog(
-      title: Text(passMsg, style: TextStyle(fontSize: 16)),
-      content: Text(passMsg2, style: TextStyle(color: Colors.grey)),
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
   }
 
   /*Future<void> _addPathToDatabase(String text) async {

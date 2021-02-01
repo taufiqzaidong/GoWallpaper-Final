@@ -33,7 +33,7 @@ class _ChooseImageState extends State<ChooseImage> {
                   Icons.camera,
                   color: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {}, //camera
                 label: Text('Camera', style: TextStyle(color: Colors.white)),
               ),
             ),

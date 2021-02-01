@@ -9,7 +9,7 @@ const _setAs = {
   SetWallpaperAs.Both: WallpaperManager.BOTH_SCREENS,
 };
 
-Future<void> setWallpaper({BuildContext context, String url}) async {
+Future<void> checkWallpaper({BuildContext context, String url}) async {
   SetWallpaperAs option;
 
   var actionSheet = CupertinoActionSheet(
@@ -37,6 +37,7 @@ Future<void> setWallpaper({BuildContext context, String url}) async {
 
   await showCupertinoModalPopup(
       context: context, builder: (context) => actionSheet);
+  Navigator.pop(context);
 
   //SetWallpaperAs option = await showCupertinoModalPopup(
   // context: context, builder: (context) => actionSheet);
