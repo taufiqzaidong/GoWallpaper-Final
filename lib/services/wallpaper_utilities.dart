@@ -10,31 +10,36 @@ const _setAs = {
 };
 
 Future<void> setWallpaper({BuildContext context, String url}) async {
+  SetWallpaperAs option;
+
   var actionSheet = CupertinoActionSheet(
       title: Text('Set Wallpaper As', style: TextStyle(fontSize: 17)),
       actions: [
         CupertinoActionSheetAction(
             onPressed: () {
-              Navigator.of(context, rootNavigator: true)
-                  .pop(SetWallpaperAs.Home);
+              option = SetWallpaperAs.Home;
+              Navigator.of(context, rootNavigator: true).pop();
             },
             child: Text('Home Screen', style: TextStyle(fontSize: 15))),
         CupertinoActionSheetAction(
             onPressed: () {
-              Navigator.of(context, rootNavigator: true)
-                  .pop(SetWallpaperAs.Lock);
+              option = SetWallpaperAs.Lock;
+              Navigator.of(context, rootNavigator: true).pop();
             },
             child: Text('Lock Screen', style: TextStyle(fontSize: 15))),
         CupertinoActionSheetAction(
             onPressed: () {
-              Navigator.of(context, rootNavigator: true)
-                  .pop(SetWallpaperAs.Both);
+              option = SetWallpaperAs.Both;
+              Navigator.of(context, rootNavigator: true).pop();
             },
             child: Text('Both', style: TextStyle(fontSize: 15))),
       ]);
 
-  SetWallpaperAs option = await showCupertinoModalPopup(
+  await showCupertinoModalPopup(
       context: context, builder: (context) => actionSheet);
+
+  //SetWallpaperAs option = await showCupertinoModalPopup(
+  // context: context, builder: (context) => actionSheet);
 
   if (option != null) {
     // var cachedImage = await DefaultCacheManager().getSingleFile(url);
