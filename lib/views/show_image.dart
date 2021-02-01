@@ -71,14 +71,22 @@ class _ShowFileImageState extends State<ShowFileImage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       RaisedButton(
-                        child: Text('Cancel'),
+                        color: Colors.purple[400],
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(color: Colors.white),
+                        ),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
                       ),
                       SizedBox(width: 20),
                       RaisedButton(
-                        child: Text('Upload'),
+                        color: Colors.purple[400],
+                        child: Text(
+                          'Upload',
+                          style: TextStyle(color: Colors.white),
+                        ),
                         onPressed: () {
                           setState(() {
                             uploading = true;

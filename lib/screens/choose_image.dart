@@ -12,6 +12,13 @@ class _ChooseImageState extends State<ChooseImage> {
   File _image;
   final picker = ImagePicker();
 
+  _openCamera() async {
+    var picture = await ImagePicker.pickImage(source: ImageSource.camera);
+    this.setState(() {
+      _image = picture;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +40,9 @@ class _ChooseImageState extends State<ChooseImage> {
                   Icons.camera,
                   color: Colors.white,
                 ),
-                onPressed: () {}, //camera
+                onPressed: () {
+                  chooseImageCamera();
+                }, //camera
                 label: Text('Camera', style: TextStyle(color: Colors.white)),
               ),
             ),
@@ -53,7 +62,7 @@ class _ChooseImageState extends State<ChooseImage> {
                 ),
                 label: Text('File', style: TextStyle(color: Colors.white)),
                 onPressed: () {
-                  chooseImage();
+                  chooseImageGallery();
                 },
               ),
             ),
@@ -63,7 +72,7 @@ class _ChooseImageState extends State<ChooseImage> {
     );
   }
 
-  chooseImage() async {
+  chooseImageGallery() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
     if (pickedFile.path == null) retrieveLostData();
     setState(() {
@@ -77,6 +86,19 @@ class _ChooseImageState extends State<ChooseImage> {
     });
   }
 
+   chooseImageCamera() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    if (pickedFile.path == null) retrieveLostData();
+    setState(() {
+      _image = File(pickedFile?.path);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ShowFileImage(image: _image),
+        ),
+      );
+    });
+  }
   Future<void> retrieveLostData() async {
     final LostData response = await picker.getLostData();
     if (response.isEmpty) {

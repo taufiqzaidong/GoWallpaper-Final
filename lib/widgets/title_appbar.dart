@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-Widget titleAppBar() {
+Widget titleAppBar(String txt1, String txt2) {
   return RichText(
     text: TextSpan(children: <TextSpan>[
       TextSpan(
-          text: "Go",
+          text: txt1,
           style: TextStyle(
               color: Colors.purple[400],
               fontWeight: FontWeight.bold,
               fontSize: 25,
               fontFamily: 'Bebas')),
       TextSpan(
-          text: "Wallpaper",
+          text: txt2,
           style:
               TextStyle(color: Colors.grey, fontSize: 25, fontFamily: 'Bebas')),
     ]),

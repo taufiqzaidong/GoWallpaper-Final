@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider<ThemeChanger>(
       create: (_) => ThemeChanger(ThemeData.light()),
       child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'GoWallpaper',
           routes: {
             '/stream': (context) => StreamStart(),
@@ -34,6 +35,7 @@ class StreamStart extends StatelessWidget {
     return StreamProvider<UserId>.value(
       value: AuthService().user,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Wrapper(),
       ),
     );

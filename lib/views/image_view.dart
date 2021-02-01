@@ -12,8 +12,6 @@ class ImageView extends StatefulWidget {
 class _ImageViewState extends State<ImageView> {
   String url = ImageView().imgUrl;
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +82,7 @@ class _ImageViewState extends State<ImageView> {
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
-                        fontSize: 13),
+                        fontSize: 15),
                   ),
                 ),
                 SizedBox(

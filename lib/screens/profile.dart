@@ -17,15 +17,11 @@ class _ProfileState extends State<Profile> {
     final theme = Provider.of<ThemeChanger>(context);
 
     final AuthService _auth = AuthService();
-    return MaterialApp(
-      theme: theme.getTheme(),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          body: new Center(
-              child: SingleChildScrollView(
+    return Scaffold(
+      body: new Center(
+          child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: MediaQuery.of(context).size.height / 90),
             Image.asset(
               'assets/profile1.png',
               width: 200,
@@ -35,6 +31,9 @@ class _ProfileState extends State<Profile> {
             Text(
               'User Name',
               style: TextStyle(fontFamily: 'Bebas', fontSize: 30),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 100,
             ),
             RaisedButton(
               shape: RoundedRectangleBorder(
@@ -50,7 +49,7 @@ class _ProfileState extends State<Profile> {
               },
             ),
             SizedBox(
-              height: 15,
+              height: MediaQuery.of(context).size.height / 100,
             ),
             RaisedButton(
               shape: RoundedRectangleBorder(
@@ -66,7 +65,7 @@ class _ProfileState extends State<Profile> {
               },
             ),
             SizedBox(
-              height: 15,
+              height: MediaQuery.of(context).size.height / 100,
             ),
             RaisedButton(
               shape: RoundedRectangleBorder(
@@ -82,7 +81,7 @@ class _ProfileState extends State<Profile> {
               },
             ),
             SizedBox(
-              height: 15,
+              height: MediaQuery.of(context).size.height / 100,
             ),
             RaisedButton(
               shape: RoundedRectangleBorder(
@@ -96,7 +95,7 @@ class _ProfileState extends State<Profile> {
             ),
           ],
         ),
-      ))),
+      )),
     );
   }
 }

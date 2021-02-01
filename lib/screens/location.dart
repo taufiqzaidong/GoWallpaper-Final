@@ -14,27 +14,34 @@ class _LocationState extends State<Location> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Location"),
-        backgroundColor: Colors.purple[400],
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/city.png'), fit: BoxFit.cover)),
-        padding: EdgeInsets.symmetric(vertical: 140.0, horizontal: 160.0),
-        child: Column(
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/city.png'), fit: BoxFit.cover)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: Text("Location"),
+          backgroundColor: Colors.purple[400],
+        ),
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            FlatButton(
-              child: Text("location"),
-              color: Colors.purple[400],
-              onPressed: () {
-                _getCurrentLocation();
-              },
+            Center(
+              child: RaisedButton(
+                child: Text("Location"),
+                color: Colors.purple[400],
+                onPressed: () {
+                  _getCurrentLocation();
+                },
+              ),
             ),
-            if (_currentPosition != null) Text(_currentAddress),
+            if (_currentPosition != null)
+              Text(
+                _currentAddress,
+                style: TextStyle(color: Colors.white),
+              ),
           ],
         ),
       ),

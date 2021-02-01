@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gowallpaper/widgets/title_appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:gowallpaper/bloc/theme.dart';
 
@@ -11,25 +12,10 @@ class ChangeTheme extends StatelessWidget {
       theme: theme.getTheme(),
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          centerTitle: true,
-          title: RichText(
-            text: TextSpan(children: <TextSpan>[
-              TextSpan(
-                  text: "Change ",
-                  style: TextStyle(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      fontFamily: 'Bebas')),
-              TextSpan(
-                  text: "Theme",
-                  style: TextStyle(
-                      color: Colors.grey, fontSize: 25, fontFamily: 'Bebas')),
-            ]),
-          ),
-        ),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            centerTitle: true,
+            title: titleAppBar('Change ', 'Theme')),
         body: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
