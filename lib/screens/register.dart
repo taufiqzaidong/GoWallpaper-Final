@@ -17,6 +17,7 @@ class _RegisterState extends State<Register> {
   bool loading = false;
 
   //text field state
+  String userName = '';
   String email = '';
   String password = '';
   String error = '';
@@ -60,6 +61,16 @@ class _RegisterState extends State<Register> {
                           ]),
                         ),
                         SizedBox(height: 55),
+                        TextFormField(
+                          decoration: textInputDecoration.copyWith(
+                              hintText: 'User Name'),
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter your User Name' : null,
+                          onChanged: (val) {
+                            setState(() => userName = val);
+                          },
+                        ),
+                        SizedBox(height: 20),
                         TextFormField(
                           decoration:
                               textInputDecoration.copyWith(hintText: 'Email'),

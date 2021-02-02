@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gowallpaper/widgets/title_appbar.dart';
 
 class Help extends StatefulWidget {
   @override
@@ -10,8 +11,10 @@ class _HelpState extends State<Help> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Help'),
-          backgroundColor: Colors.purple[400],
+          elevation: 0,
+          centerTitle: true,
+          title: titleAppBar('Your', 'HelpService'),
+          backgroundColor: Colors.transparent,
         ),
         backgroundColor: Colors.grey[600],
         body: Padding(

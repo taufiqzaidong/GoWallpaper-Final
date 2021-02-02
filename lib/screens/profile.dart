@@ -29,7 +29,7 @@ class _ProfileState extends State<Profile> {
               fit: BoxFit.cover,
             ),
             Text(
-              'User Name',
+              'userName',
               style: TextStyle(fontFamily: 'Bebas', fontSize: 30),
             ),
             SizedBox(
