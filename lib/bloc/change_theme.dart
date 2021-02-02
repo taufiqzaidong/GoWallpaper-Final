@@ -9,6 +9,7 @@ class ChangeTheme extends StatelessWidget {
     ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
     final theme = Provider.of<ThemeChanger>(context);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: theme.getTheme(),
       home: Scaffold(
         appBar: AppBar(
