@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gowallpaper/screens/help.dart';
 import 'package:gowallpaper/screens/location.dart';
-import 'package:gowallpaper/bloc/theme.dart';
 import 'package:gowallpaper/screens/wallet.dart';
 import 'package:provider/provider.dart';
 import 'package:gowallpaper/services/auth.dart';
+import 'package:gowallpaper/services/database.dart';
+import 'package:gowallpaper/models/user.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -14,8 +15,6 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeChanger>(context);
-
     final AuthService _auth = AuthService();
     return Scaffold(
       body: new Center(
@@ -29,7 +28,8 @@ class _ProfileState extends State<Profile> {
               fit: BoxFit.cover,
             ),
             Text(
-              'userName',
+              //getUsersName(UserId().uid),
+              'user name',
               style: TextStyle(fontFamily: 'Bebas', fontSize: 30),
             ),
             SizedBox(

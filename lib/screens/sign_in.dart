@@ -98,6 +98,10 @@ class _SignInState extends State<SignIn> {
                                   loading = false;
                                 });
                               }
+                              if (result != null) {
+                                _auth.signInWithEmailAndPassword(
+                                    email, password);
+                              }
                             }
                           },
                         ),

@@ -42,7 +42,7 @@ class _RegisterState extends State<Register> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 100),
+                        SizedBox(height: 50),
                         RichText(
                           text: TextSpan(children: <TextSpan>[
                             TextSpan(
@@ -60,7 +60,7 @@ class _RegisterState extends State<Register> {
                                     fontFamily: 'Bebas')),
                           ]),
                         ),
-                        SizedBox(height: 55),
+                        SizedBox(height: 45),
                         TextFormField(
                           decoration: textInputDecoration.copyWith(
                               hintText: 'User Name'),
@@ -104,7 +104,7 @@ class _RegisterState extends State<Register> {
                               setState(() => loading = true);
                               dynamic result =
                                   await _auth.registerWithEmailAndPassword(
-                                      email, password);
+                                      email, password, userName);
                               if (result == null) {
                                 setState(() {
                                   error = 'Email is not valid';

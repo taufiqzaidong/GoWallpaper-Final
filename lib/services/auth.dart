@@ -1,5 +1,6 @@
 import 'package:gowallpaper/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gowallpaper/services/database.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -12,18 +13,6 @@ class AuthService {
   //auth change user stream
   Stream<UserId> get user {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
-  }
-
-  //sing in anon
-  Future signinAnon() async {
-    try {
-      UserCredential result = await _auth.signInAnonymously();
-      User userFirebase = result.user;
-      return _userFromFirebaseUser(userFirebase);
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
   }
 
   //sign in with email & password
@@ -40,12 +29,13 @@ class AuthService {
   }
 
   //register with email & password
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(
+      String email, String password, String userName) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User userFirebase = result.user;
-
+      await userSetup(userName);
       return _userFromFirebaseUser(userFirebase);
     } catch (e) {
       print(e.toString());

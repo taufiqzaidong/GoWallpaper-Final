@@ -8,9 +8,10 @@ class UserId {
 
 class UserData {
   final String uid;
+  final String userName;
   ThemeData themeData = ThemeData.light();
 
-  UserData({this.uid});
+  UserData({this.uid, this.userName});
 
   void setThemeData(ThemeData theme) {
     themeData = theme;

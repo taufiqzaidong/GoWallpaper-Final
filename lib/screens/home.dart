@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
     // FlutterStatusbarcolor.setStatusBarColor(Colors.purple);
     final theme = Provider.of<ThemeChanger>(context);
 
-    //final AuthService _auth = AuthService();
+    final AuthService _auth = AuthService();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme.getTheme(),
@@ -43,13 +43,13 @@ class _HomeState extends State<Home> {
           centerTitle: true,
           title: titleAppBar('Go', 'Wallpaper'),
           actions: <Widget>[
-            /*FlatButton.icon(
+            FlatButton.icon(
               icon: Icon(Icons.person),
               label: Text('Logout'),
               onPressed: () async {
                 await _auth.signOut();
               },
-            ),*/
+            ),
             IconButton(
               color: iconColour(theme.getTheme()),
               icon: Icon(Icons.bedtime),
