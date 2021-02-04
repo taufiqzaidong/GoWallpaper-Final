@@ -24,16 +24,11 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     final AuthService _auth = AuthService();
     return Scaffold(
-      body: new Center(
-          child: SingleChildScrollView(
+        body: new Center(
+      child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Image.asset(
-              'assets/profile1.png',
-              width: 200,
-              height: 150,
-              fit: BoxFit.cover,
-            ),
+            _circleAvatar(),
             FutureBuilder<DocumentSnapshot>(
               future: usersRef.doc(uid).get(),
               builder: (BuildContext context,
@@ -114,7 +109,25 @@ class _ProfileState extends State<Profile> {
             ),
           ],
         ),
-      )),
-    );
+      ),
+    ));
+  }
+
+  Widget _circleAvatar() {
+    return Container(
+      width: MediaQuery.of(context).size.width / 2.3,
+      height: MediaQuery.of(context).size.width / 2.3,
+      padding: EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.purple, width: 4),
+
+        shape: BoxShape.circle,
+        color: Colors.white,
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage('assets/profile1.png'),
+        ), // Decoration image
+      ), // Box decoration
+    ); // Container
   }
 }

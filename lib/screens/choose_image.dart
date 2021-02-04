@@ -86,7 +86,7 @@ class _ChooseImageState extends State<ChooseImage> {
     });
   }
 
-   chooseImageCamera() async {
+  chooseImageCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
     if (pickedFile.path == null) retrieveLostData();
     setState(() {
@@ -99,6 +99,7 @@ class _ChooseImageState extends State<ChooseImage> {
       );
     });
   }
+
   Future<void> retrieveLostData() async {
     final LostData response = await picker.getLostData();
     if (response.isEmpty) {

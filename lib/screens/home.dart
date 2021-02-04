@@ -6,7 +6,6 @@ import 'package:gowallpaper/widgets/title_appbar.dart';
 import 'package:gowallpaper/services/auth.dart';
 import 'package:gowallpaper/screens/profile.dart';
 import 'package:gowallpaper/screens/mainhome.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:gowallpaper/screens/choose_image.dart';
 
 class Home extends StatefulWidget {
@@ -29,7 +28,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // FlutterStatusbarcolor.setStatusBarColor(Colors.purple);
     final theme = Provider.of<ThemeChanger>(context);
 
     final AuthService _auth = AuthService();
@@ -72,7 +70,8 @@ class _HomeState extends State<Home> {
           //backgroundColor: Colors.transparent,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.camera), label: 'Camera'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.upload_file), label: 'Upload'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
           ],
           onTap: (index) {

@@ -54,9 +54,12 @@ class _MainHomeState extends State<MainHome> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                        hintText: 'Search', border: InputBorder.none),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 15,
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: 'Search', border: InputBorder.none),
+                    ),
                   ),
                 ),
                 Icon(Icons.search)
