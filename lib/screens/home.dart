@@ -64,15 +64,31 @@ class _HomeState extends State<Home> {
         ),
         body: tabs[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.purple[400],
+
           //elevation: 0,
           currentIndex: _currentIndex,
           type: BottomNavigationBarType.fixed,
           //backgroundColor: Colors.transparent,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.upload_file), label: 'Upload'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.purple[400],
+                ),
+                label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.upload_file,
+                  color: Colors.purple[400],
+                ),
+                label: 'Upload'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                  color: Colors.purple[400],
+                ),
+                label: 'Profile')
           ],
           onTap: (index) {
             setState(() {
