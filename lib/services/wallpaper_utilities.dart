@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:wallpaper_manager/wallpaper_manager.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,18 +40,23 @@ Future<void> checkWallpaper({BuildContext context, String url}) async {
       context: context, builder: (context) => actionSheet);
   Navigator.pop(context);
 
-  //SetWallpaperAs option = await showCupertinoModalPopup(
-  // context: context, builder: (context) => actionSheet);
+  String result;
 
+  print(option);
   if (option != null) {
-    // var cachedImage = await DefaultCacheManager().getSingleFile(url);
-    // if (cachedImage != null) {
-    var result =
-        await WallpaperManager.setWallpaperFromFile(url, _setAs[option]);
+    var fileUrl = await DefaultCacheManager().getSingleFile(url);
+    print(fileUrl);
+    if (fileUrl != null) {
+      try {
+        result = await WallpaperManager.setWallpaperFromFile(
+            fileUrl.path, _setAs[option]);
+      } on PlatformException {
+        result = 'Failed to get wallpaper';
+      }
 
-    if (result != null) {
-      debugPrint(result);
+      if (result != null) {
+        debugPrint(result);
+      }
     }
   }
-  // }
 }
