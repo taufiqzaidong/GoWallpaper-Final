@@ -27,10 +27,13 @@ class _ShowFileImageState extends State<ShowFileImage> {
   bool uploading = false;
   double val = 0;
 
+  int _value = 6;
+
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeChanger>(context);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: theme.getTheme(),
       home: Scaffold(
           appBar: AppBar(
@@ -67,6 +70,27 @@ class _ShowFileImageState extends State<ShowFileImage> {
                     ),
                   ),
                   SizedBox(height: 20),
+                  DropdownButton(
+                      value: _value,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text("Cars"),
+                          value: 1,
+                        ),
+                        DropdownMenuItem(
+                          child: Text("Bikes"),
+                          value: 2,
+                        ),
+                        DropdownMenuItem(child: Text("Aesthetic"), value: 3),
+                        DropdownMenuItem(child: Text("Nature"), value: 4),
+                        DropdownMenuItem(child: Text("City"), value: 5),
+                        DropdownMenuItem(child: Text("Others"), value: 6),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _value = value;
+                        });
+                      }),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

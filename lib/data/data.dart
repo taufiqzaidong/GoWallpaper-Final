@@ -18,13 +18,7 @@ List<CategorieModel> getCategories() {
 
   categorieModel.imgUrl =
       "https://images.pexels.com/photos/545008/pexels-photo-545008.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-  categorieModel.categorieName = "Street Art";
-  categories.add(categorieModel);
-  categorieModel = new CategorieModel();
-
-  categorieModel.imgUrl =
-      "https://images.pexels.com/photos/704320/pexels-photo-704320.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-  categorieModel.categorieName = "Wild Life";
+  categorieModel.categorieName = "Aesthetic";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 
@@ -42,7 +36,7 @@ List<CategorieModel> getCategories() {
 
   categorieModel.imgUrl =
       "https://images.pexels.com/photos/1434819/pexels-photo-1434819.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
-  categorieModel.categorieName = "Motivation";
+  categorieModel.categorieName = "Others";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 

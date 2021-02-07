@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gowallpaper/data/data.dart';
 import 'package:gowallpaper/models/categories_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gowallpaper/views/category_wallpaper.dart';
 import 'package:gowallpaper/views/image_view.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
@@ -144,7 +145,14 @@ class CategoriesTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkResponse(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoriesView(),
+          ),
+        );
+      },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 4),
         child: Stack(

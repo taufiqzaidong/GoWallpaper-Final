@@ -79,13 +79,13 @@ class _ImageViewState extends State<ImageView> {
                             SizedBox(
                               height: 2,
                             ),
-                            Text(
+                            /* Text(
                               "Image will be saved in gallery",
                               style: TextStyle(
                                   color: Colors.white70,
                                   fontSize: 8,
                                   fontWeight: FontWeight.w500),
-                            ),
+                            ),*/
                           ]),
                         ),
                       ),
