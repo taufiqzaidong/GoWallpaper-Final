@@ -146,10 +146,13 @@ class CategoriesTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkResponse(
       onTap: () {
+        print(title);
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CategoriesView(),
+            builder: (context) => CategoriesView(
+              type: title,
+            ),
           ),
         );
       },

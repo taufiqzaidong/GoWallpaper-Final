@@ -27,7 +27,7 @@ class _ShowFileImageState extends State<ShowFileImage> {
   bool uploading = false;
   double val = 0;
 
-  int _value = 6;
+  String _value = 'Others';
 
   @override
   Widget build(BuildContext context) {
@@ -75,16 +75,19 @@ class _ShowFileImageState extends State<ShowFileImage> {
                       items: [
                         DropdownMenuItem(
                           child: Text("Cars"),
-                          value: 1,
+                          value: 'Cars',
                         ),
                         DropdownMenuItem(
                           child: Text("Bikes"),
-                          value: 2,
+                          value: 'Bikes',
                         ),
-                        DropdownMenuItem(child: Text("Aesthetic"), value: 3),
-                        DropdownMenuItem(child: Text("Nature"), value: 4),
-                        DropdownMenuItem(child: Text("City"), value: 5),
-                        DropdownMenuItem(child: Text("Others"), value: 6),
+                        DropdownMenuItem(
+                            child: Text("Aesthetic"), value: 'Aesthetic'),
+                        DropdownMenuItem(
+                            child: Text("Nature"), value: 'Nature'),
+                        DropdownMenuItem(child: Text("City"), value: 'City'),
+                        DropdownMenuItem(
+                            child: Text("Others"), value: 'Others'),
                       ],
                       onChanged: (value) {
                         setState(() {
@@ -115,7 +118,7 @@ class _ShowFileImageState extends State<ShowFileImage> {
                           setState(() {
                             uploading = true;
                           });
-                          uploadFile()
+                          uploadFile(_value)
                               .then((value) => Navigator.of(context).pop());
                         },
                       )
@@ -135,7 +138,7 @@ class _ShowFileImageState extends State<ShowFileImage> {
     );
   }
 
-  Future uploadFile() async {
+  Future uploadFile(String type) async {
     try {
       ref = fs.FirebaseStorage.instance
           .ref()
@@ -145,7 +148,8 @@ class _ShowFileImageState extends State<ShowFileImage> {
         await ref.getDownloadURL().then((value) {
           imgRef.add({
             'url': value,
-            'location': 'images/${Path.basename(widget.image.path)}'
+            'location': 'images/${Path.basename(widget.image.path)}',
+            'type': type
           });
         });
 
