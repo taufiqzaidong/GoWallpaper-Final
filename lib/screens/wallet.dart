@@ -34,8 +34,16 @@ class _WalletState extends State<Wallet> {
                   style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
                 SizedBox(
-                  height: 200,
-                  width: 100,
+                  height: 100,
+                  width: 60,
+                ),
+                Text(
+                  "RM 20",
+                  style: TextStyle(fontSize: 45, color: Colors.white),
+                ),
+                SizedBox(
+                  height: 100,
+                  width: 60,
                 ),
                 RaisedButton(
                   textColor: Colors.white,
