@@ -69,7 +69,7 @@ class _MainHomeState extends State<MainHome> {
           ),
           SizedBox(height: 10),
           Container(
-            height: 60,
+            height: 50,
             child: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 5),
               shrinkWrap: true,
@@ -162,14 +162,18 @@ class CategoriesTile extends StatelessWidget {
           children: [
             ClipRRect(
                 child: Image.network(imgUrl,
-                    height: 50, width: 100, fit: BoxFit.cover),
+                    height: 40, width: 100, fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(8)),
-            Container(
-              height: 50,
-              width: 100,
-              alignment: Alignment.center,
-              child: Text(title,
-                  style: TextStyle(color: Colors.white, fontFamily: 'Bebas')),
+            Center(
+              child: Container(
+                height: 50,
+                width: 100,
+                alignment: Alignment.center,
+                child: Text(
+                  title,
+                  style: TextStyle(color: Colors.white, fontFamily: 'Bebas'),
+                ),
+              ),
             )
           ],
         ),

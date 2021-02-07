@@ -34,7 +34,7 @@ class _CategoriesViewState extends State<CategoriesView> {
   @override
   void initState() {
     subscription = collectionReference
-        .where('type', isEqualTo: 'Cars')
+        .where('type', isEqualTo: widget.type.toString())
         .snapshots()
         .listen((datasnapshot) {
       setState(() {
