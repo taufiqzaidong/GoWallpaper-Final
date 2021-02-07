@@ -169,7 +169,7 @@ class _ProfileState extends State<Profile> {
         color: Colors.white,
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage('assets/profile1.png'),
+          image: AssetImage('assets/avatar.jpg'),
         ), // Decoration image
       ), // Box decoration
     ); // Container
