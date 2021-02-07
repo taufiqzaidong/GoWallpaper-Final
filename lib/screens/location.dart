@@ -25,7 +25,7 @@ class _LocationState extends State<Location> {
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/city.png'), fit: BoxFit.cover)),
+                image: AssetImage('assets/wp2.png'), fit: BoxFit.cover)),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
