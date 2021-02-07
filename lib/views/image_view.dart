@@ -73,6 +73,9 @@ class _ImageViewState extends State<ImageView> {
                             )),
                         child: Center(
                           child: Column(children: <Widget>[
+                            SizedBox(
+                              height: 5,
+                            ),
                             Text('Set as Wallpaper',
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.white70)),
