@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:gowallpaper/services/auth.dart';
 import 'package:gowallpaper/services/database.dart';
 import 'package:gowallpaper/models/user.dart';
+import 'package:gowallpaper/views/fingerprint_view.dart';
 
 final usersRef = FirebaseFirestore.instance.collection('Users');
 final FirebaseAuth auth = FirebaseAuth.instance;
@@ -58,7 +59,7 @@ class _ProfileState extends State<Profile> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Wallet()),
+                  MaterialPageRoute(builder: (context) => Fingerprint()),
                 );
               },
             ),

@@ -12,13 +12,6 @@ class _ChooseImageState extends State<ChooseImage> {
   File _image;
   final picker = ImagePicker();
 
-  _openCamera() async {
-    var picture = await ImagePicker.pickImage(source: ImageSource.camera);
-    this.setState(() {
-      _image = picture;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(

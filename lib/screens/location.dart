@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:gowallpaper/bloc/theme.dart';
+import 'package:gowallpaper/widgets/title_appbar.dart';
+import 'package:provider/provider.dart';
 
 class Location extends StatefulWidget {
   @override
@@ -14,35 +17,50 @@ class _LocationState extends State<Location> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/city.png'), fit: BoxFit.cover)),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          title: Text("Location"),
-          backgroundColor: Colors.purple[400],
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: RaisedButton(
-                child: Text("Location"),
+    final theme = Provider.of<ThemeChanger>(context);
+
+    return MaterialApp(
+      theme: theme.getTheme(),
+      debugShowCheckedModeBanner: false,
+      home: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/city.png'), fit: BoxFit.cover)),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            elevation: 0,
+            centerTitle: true,
+            title: titleAppBar('Your ', 'Location'),
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
                 color: Colors.purple[400],
-                onPressed: () {
-                  _getCurrentLocation();
-                },
               ),
+              onPressed: () => Navigator.of(context).pop(),
             ),
-            if (_currentPosition != null)
-              Text(
-                _currentAddress,
-                style: TextStyle(color: Colors.white),
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: RaisedButton(
+                  child: Text("Location"),
+                  color: Colors.purple[400],
+                  onPressed: () {
+                    _getCurrentLocation();
+                  },
+                ),
               ),
-          ],
+              if (_currentPosition != null)
+                Text(
+                  _currentAddress,
+                  style: TextStyle(color: Colors.white),
+                ),
+            ],
+          ),
         ),
       ),
     );
