@@ -45,20 +45,25 @@ class _LocationState extends State<Location> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              if (_currentPosition != null)
+                Text(
+                  _currentAddress,
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 50, fontFamily: 'Bebas'),
+                  textAlign: TextAlign.center,
+                ),
               Center(
                 child: RaisedButton(
-                  child: Text("Location"),
+                  child: Text(
+                    "Location",
+                    style: TextStyle(color: Colors.white),
+                  ),
                   color: Colors.purple[400],
                   onPressed: () {
                     _getCurrentLocation();
                   },
                 ),
               ),
-              if (_currentPosition != null)
-                Text(
-                  _currentAddress,
-                  style: TextStyle(color: Colors.white),
-                ),
             ],
           ),
         ),

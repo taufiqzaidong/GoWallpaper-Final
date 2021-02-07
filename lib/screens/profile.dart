@@ -28,6 +28,8 @@ class _ProfileState extends State<Profile> {
         body: new Center(
       child: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             _circleAvatar(),
             FutureBuilder<DocumentSnapshot>(
@@ -47,8 +49,28 @@ class _ProfileState extends State<Profile> {
                 return Text("loading");
               },
             ),
+            FutureBuilder<DocumentSnapshot>(
+              future: usersRef.doc(uid).get(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text("Something went wrong");
+                }
+
+                if (snapshot.connectionState == ConnectionState.done) {
+                  Map<String, dynamic> data = snapshot.data.data();
+                  return Text(data['email'].toString(),
+                      style: TextStyle(
+                          //fontFamily: 'Bebas',
+                          fontSize: 15,
+                          color: Colors.grey));
+                }
+
+                return Text("loading");
+              },
+            ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 100,
+              height: MediaQuery.of(context).size.height / 50,
             ),
             RaisedButton(
               shape: RoundedRectangleBorder(
@@ -116,8 +138,8 @@ class _ProfileState extends State<Profile> {
 
   Widget _circleAvatar() {
     return Container(
-      width: MediaQuery.of(context).size.width / 2.3,
-      height: MediaQuery.of(context).size.width / 2.3,
+      width: MediaQuery.of(context).size.width / 3,
+      height: MediaQuery.of(context).size.width / 3,
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.purple, width: 4),
