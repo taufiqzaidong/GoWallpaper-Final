@@ -70,65 +70,86 @@ class _ProfileState extends State<Profile> {
               },
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 50,
+              height: 15,
             ),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)),
-              color: Colors.purple[400],
-              textColor: Colors.white,
-              child: Text('Wallet'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Fingerprint()),
-                );
-              },
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 100,
-            ),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)),
-              color: Colors.purple[400],
-              textColor: Colors.white,
-              child: Text('Location'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Location()),
-                );
-              },
+            ButtonTheme(
+              minWidth: MediaQuery.of(context).size.width / 1.1,
+              height: MediaQuery.of(context).size.height / 13,
+              child: RaisedButton.icon(
+                icon: Icon(Icons.wallet_membership),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                color: Colors.purple[400],
+                textColor: Colors.white,
+                label: Text('Wallet'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Wallet()),
+                  );
+                },
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 100,
             ),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)),
-              color: Colors.purple[400],
-              textColor: Colors.white,
-              child: Text('Help'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Help()),
-                );
-              },
+            ButtonTheme(
+              minWidth: MediaQuery.of(context).size.width / 1.1,
+              height: MediaQuery.of(context).size.height / 13,
+              child: RaisedButton.icon(
+                icon: Icon(Icons.location_city),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                color: Colors.purple[400],
+                textColor: Colors.white,
+                label: Text('Location'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Location()),
+                  );
+                },
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 100,
             ),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)),
-              color: Colors.purple[400],
-              textColor: Colors.white,
-              child: Text('Log Out'),
-              onPressed: () async {
-                await _auth.signOut();
-              },
+            ButtonTheme(
+              minWidth: MediaQuery.of(context).size.width / 1.1,
+              height: MediaQuery.of(context).size.height / 13,
+              child: RaisedButton.icon(
+                icon: Icon(Icons.help),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                color: Colors.purple[400],
+                textColor: Colors.white,
+                label: Text('Help'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Help()),
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 100,
+            ),
+            ButtonTheme(
+              minWidth: MediaQuery.of(context).size.width / 1.1,
+              height: MediaQuery.of(context).size.height / 13,
+              child: RaisedButton.icon(
+                icon: Icon(Icons.logout),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                color: Colors.purple[400],
+                textColor: Colors.white,
+                label: Text('Log Out'),
+                onPressed: () async {
+                  await _auth.signOut();
+                },
+              ),
             ),
           ],
         ),
