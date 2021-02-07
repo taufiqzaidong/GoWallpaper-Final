@@ -34,14 +34,6 @@ class _WalletState extends State<Wallet> {
                   style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
                 SizedBox(
-                  height: 16,
-                  width: 100,
-                ),
-                Text(
-                  "Upcoming Feature!!!!",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                ),
-                SizedBox(
                   height: 200,
                   width: 100,
                 ),
