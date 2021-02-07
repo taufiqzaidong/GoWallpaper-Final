@@ -37,7 +37,7 @@ class _HelpState extends State<Help> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Submit ",
+                    "Submit your problem",
                     style: TextStyle(fontSize: 25, color: Colors.black),
                   ),
                   SizedBox(
