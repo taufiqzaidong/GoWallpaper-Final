@@ -58,9 +58,11 @@ class _HelpState extends State<Help> {
                   ),
                   RaisedButton(
                     textColor: Colors.white,
-                    color: Colors.purple[300],
+                    color: Colors.purple[400],
                     child: Text('Submit'),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                   )
                 ],
               ))),
