@@ -15,31 +15,34 @@ class _WalletState extends State<Wallet> {
           centerTitle: true,
           title: titleAppBar('Your', 'Wallet'),
           backgroundColor: Colors.transparent,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.purple[400],
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
         ),
-        backgroundColor: Colors.grey[600],
         body: Padding(
             padding: EdgeInsets.all(15),
             child: Column(
               children: <Widget>[
-                Text(
-                  "Here your balance for your Account!!",
-                  style: TextStyle(fontSize: 30, color: Colors.white),
+                SizedBox(height: 20),
+                Center(
+                  child: Text(
+                    "Balance of Your Account:",
+                    style: TextStyle(fontSize: 25, color: Colors.grey),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 SizedBox(
-                  height: 16,
-                  width: 100,
+                  height: 80,
                 ),
-                Text(
-                  "Total of your account:",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                ),
-                SizedBox(
-                  height: 100,
-                  width: 60,
-                ),
-                Text(
-                  "RM 20",
-                  style: TextStyle(fontSize: 45, color: Colors.white),
+                Center(
+                  child: Text(
+                    "RM 20.00",
+                    style: TextStyle(fontSize: 45, color: Colors.black),
+                  ),
                 ),
                 SizedBox(
                   height: 100,
@@ -47,7 +50,7 @@ class _WalletState extends State<Wallet> {
                 ),
                 RaisedButton(
                   textColor: Colors.white,
-                  color: Colors.purple[300],
+                  color: Colors.purple[400],
                   child: Text('Withdraw'),
                   onPressed: () {},
                 )
