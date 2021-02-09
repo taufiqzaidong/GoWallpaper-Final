@@ -10,17 +10,22 @@ import 'package:gowallpaper/services/database.dart';
 import 'package:gowallpaper/models/user.dart';
 import 'package:gowallpaper/views/fingerprint_view.dart';
 
-final usersRef = FirebaseFirestore.instance.collection('Users');
-final FirebaseAuth auth = FirebaseAuth.instance;
-final User user = auth.currentUser;
-final uid = user.uid;
-
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  final usersRef = FirebaseFirestore.instance.collection('Users');
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  String uid = '';
+  @override
+  void initState() {
+    final User user = auth.currentUser;
+    uid = user.uid;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final AuthService _auth = AuthService();
