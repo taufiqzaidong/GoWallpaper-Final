@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gowallpaper/services/wallpaper_utilities.dart';
-import 'package:gowallpaper/screens/home.dart';
-
 import 'package:dio/dio.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';

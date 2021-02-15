@@ -18,7 +18,6 @@ class ChangeTheme extends StatelessWidget {
             centerTitle: true,
             title: titleAppBar('Change ', 'Theme')),
         body: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 50),

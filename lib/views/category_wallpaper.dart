@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gowallpaper/bloc/theme.dart';
 import 'package:gowallpaper/views/image_view.dart';
-import 'package:gowallpaper/widgets/title_appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 

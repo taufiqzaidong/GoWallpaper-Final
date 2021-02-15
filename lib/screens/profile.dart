@@ -3,11 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gowallpaper/screens/help.dart';
 import 'package:gowallpaper/screens/location.dart';
-import 'package:gowallpaper/screens/wallet.dart';
-import 'package:provider/provider.dart';
 import 'package:gowallpaper/services/auth.dart';
-import 'package:gowallpaper/services/database.dart';
-import 'package:gowallpaper/models/user.dart';
 import 'package:gowallpaper/views/fingerprint_view.dart';
 
 class Profile extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:gowallpaper/bloc/change_theme.dart';
 import 'package:gowallpaper/bloc/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:gowallpaper/widgets/title_appbar.dart';
-import 'package:gowallpaper/services/auth.dart';
+
 import 'package:gowallpaper/screens/profile.dart';
 import 'package:gowallpaper/screens/mainhome.dart';
 import 'package:gowallpaper/screens/choose_image.dart';
