@@ -29,7 +29,6 @@ class _RegisterState extends State<Register> {
         ? Loading()
         : Scaffold(
             resizeToAvoidBottomInset: true,
-            resizeToAvoidBottomPadding: true,
             body: Container(
                 height: double.infinity,
                 decoration: BoxDecoration(
