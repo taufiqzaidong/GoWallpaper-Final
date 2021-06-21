@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
           elevation: 0,
           backgroundColor: Colors.transparent,
           centerTitle: true,
-          title: titleAppBar('Go', 'Wallpaper'),
+          title: titleAppBar('CAR', 'OSAK'),
           actions: <Widget>[
             /*FlatButton.icon(
               icon: Icon(Icons.person),
